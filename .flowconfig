@@ -1,0 +1,27 @@
+[ignore]
+.*/_tests/.*
+.*/public/.*
+.*/.next/.*
+.*/webpack/.*
+.*/node_modules/.*
+.*/node_modules/styled-components/.*
+
+[libs]
+types/
+
+[options]
+# Support absolute file paths
+module.name_mapper='^\(api\|client\|components\|constants\|motion\|routes\|scenes\|server\|state\|types\|utils\|socket\|styles\)\/\(.*\)$' -> '<PROJECT_ROOT>/src/\1/\2'
+esproposal.decorators=ignore
+
+# Support custom filetype imports
+module.name_mapper.extension='scss' -> '<PROJECT_ROOT>/flow/KeyValueStub.js'
+module.name_mapper.extension='json' -> '<PROJECT_ROOT>/flow/KeyValueStub.js'
+
+# Support some es7 syntax
+esproposal.class_static_fields=enable
+esproposal.class_instance_fields=enable
+
+module.ignore_non_literal_requires=true
+
+suppress_comment=\\(.\\|\n\\)*\\#FlowExpectError

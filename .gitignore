@@ -1,0 +1,11 @@
+node_modules
+.DS_Store
+.next
+build-*
+build
+npm-debug.log
+.tern-port
+.vscode
+coverage
+stats.json
+yarn.lock

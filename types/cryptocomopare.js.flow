@@ -1,0 +1,9 @@
+/* @flow */
+
+declare module "cryptocompare" {
+  declare module.exports: {
+    coinList: Function,
+    priceMulti: Function,
+    priceHistorical: Function
+  }
+}
