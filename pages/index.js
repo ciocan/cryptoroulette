@@ -87,7 +87,7 @@ export default class extends Component<Props, State> {
       hasError: false
     });
 
-    await this.getCoins();
+    await this.getCoins(historicalDate);
     const timestamp = new Date(historicalDate).getTime();
     const symbols = this.state.coins.map((coin: CoinType) => coin.symbol).join(':');
 
