@@ -1,0 +1,11 @@
+/* @flow */
+
+declare module "react-ga" {
+  declare module.exports: {
+    initialize: Function,
+    set: Function,
+    pageview: Function,
+    event: Function,
+    exception: Function
+  }
+}

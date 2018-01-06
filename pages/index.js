@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Router } from '../routes';
 import Coin from '../components/Coin';
 import { getRandomDate, getCoinsFromApi, currency } from '../lib/utils';
+import { logEvent, logPageView } from '../lib/analytics';
 
 const TOTAL_INVESTMENT = 1000;
 const TOTAL_COINS = 6;
@@ -84,6 +85,8 @@ export default class extends Component<Props, State> {
     const symbols = this.state.coins.map((coin: CoinType) => coin.symbol).join(':');
 
     Router.replaceRoute(`/${timestamp}/${symbols}`);
+    logPageView();
+    logEvent('button click', 'showMeTheMoney');
   }
 
   updateWorth = (value: number) => {

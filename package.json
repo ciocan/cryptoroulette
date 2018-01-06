@@ -43,6 +43,7 @@
     "node-fetch": "^1.7.3",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-ga": "^2.4.0",
     "styled-components": "^2.4.0"
   }
 }
