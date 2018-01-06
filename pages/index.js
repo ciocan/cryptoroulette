@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Router } from '../routes';
 import Coin from '../components/Coin';
 import { getRandomDate, getCoinsFromApi, currency } from '../lib/utils';
-import { logEvent, logPageView } from '../lib/analytics';
+import { initGA, logEvent, logPageView } from '../lib/analytics';
 
 const TOTAL_INVESTMENT = 1000;
 const TOTAL_COINS = 6;
@@ -59,6 +59,13 @@ export default class extends Component<Props, State> {
 
       Router.replaceRoute(`/${timestamp}/${symbols}`);
     }
+
+    if (!window.GA_INITIALIZED) {
+      initGA();
+      window.GA_INITIALIZED = true;
+    }
+
+    logPageView();
   }
 
   getCoins = async (historicalDate: Date = new Date(this.props.historicalDate), symbols: string[] = []) => {
