@@ -73,7 +73,6 @@ export default class extends Component<Props, State> {
 
     return (
       <Container>
-        <Button onClick={this.showMeTheMoney}>Show me again the money!</Button>
         <Headline>
           If I invested $1,000 in 6 random cryptocurrencies
           on <HistoricalDate>{formattedDate}</HistoricalDate>
@@ -82,7 +81,7 @@ export default class extends Component<Props, State> {
 
         <TotalWorth>{currency(worth)}</TotalWorth>
         {hasError ? (
-          <Error>ERROR: I just broke the blockchain. Please try again.</Error>
+          <Error>OH Nooo!!! I just broke the blockchain. Please try again.</Error>
         ) : (
           <CoinContainer>
             {coins.length > 0 ? coins.map((coin: CoinType) => (
@@ -95,6 +94,7 @@ export default class extends Component<Props, State> {
             )) : <Loading>computing the crypto bubble...</Loading>}
           </CoinContainer>
         )}
+        <Button onClick={this.showMeTheMoney}>Show me the money!</Button>
       </Container>
     );
   }
@@ -104,6 +104,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 40px;
 `;
 
 const Headline = styled.h1`
@@ -116,19 +117,34 @@ const HistoricalDate = styled.span`
 
 const TotalWorth = styled.h1`
   color: green;
+  font-size: 42px;
 `;
 
 const CoinContainer = styled.div`
   display: flex;
+  flex-wrap: wrap;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 420px;
+  background-color: lightgrey;
+  margin: 20px 60px;
+  padding: 10px;
 `;
 
 const Error = styled.div`
   color: red;
   font-size: 20px;
+  min-height: 420px;
+  align-items: center;
+  display: flex;
+  font-size: 22px;
 `;
 
 const Loading = styled.div`
-
+  font-style: italic;
+  font-size: 30px;
 `;
 
 const Button = styled.button`
@@ -138,4 +154,9 @@ const Button = styled.button`
   color: white;
   background: green;
   font-size: 20px;
+
+  &:hover {
+    background: yellow;
+    color: green;
+  }
 `;

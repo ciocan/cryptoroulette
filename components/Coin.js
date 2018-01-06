@@ -49,13 +49,16 @@ export default class Coin extends Component<Props> {
 
 const Container = styled.a`
   display: flex;
+  flex: 1 auto;
+  min-width: 100px;
+  max-width: 200px;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   padding: 10px;
   margin: 10px;
   border: 1px solid #666;
-  flex: 1;
+  background: white;
   text-decoration: none;
 
   &:hover {
@@ -81,15 +84,16 @@ const CoinSymbol = styled.h3`
 `;
 
 const Price = styled.h4`
-
+  font-size: 20px;
 `;
 
 const HistoricalPrice = styled.div`
-
+  color: grey;
 `;
 
 const TotalCoins = styled.div`
   padding: 5px;
+  color: grey;
 `;
 
 const Worth = styled.div`
