@@ -3,6 +3,7 @@
         "next/babel"
     ],
     "plugins": [
+        "transform-async-to-generator",
         "transform-flow-strip-types",
         ["styled-components", { "ssr": true, "displayName": true, "preprocess": false } ]
     ]

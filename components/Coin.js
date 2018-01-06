@@ -18,7 +18,7 @@ export default class Coin extends Component<Props> {
   }
 
   computeWorth = () => {
-    const { currentPrice = 0, invested, historicalPrice = 0 } = this.props;
+    const { invested, currentPrice = 0, historicalPrice = 0 } = this.props;
     return invested / historicalPrice * currentPrice;
   }
 

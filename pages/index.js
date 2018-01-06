@@ -73,8 +73,13 @@ export default class extends Component<Props, State> {
 
     return (
       <Container>
-        <Button onClick={this.showMeTheMoney}>Show me the money!</Button>
-        <HistoricalDate>{formattedDate}</HistoricalDate>
+        <Button onClick={this.showMeTheMoney}>Show me again the money!</Button>
+        <Headline>
+          If I invested $1,000 in 6 random cryptocurrencies
+          on <HistoricalDate>{formattedDate}</HistoricalDate>
+          now I have worth of
+        </Headline>
+
         <TotalWorth>{currency(worth)}</TotalWorth>
         {hasError ? (
           <Error>ERROR: I just broke the blockchain. Please try again.</Error>
@@ -98,10 +103,15 @@ export default class extends Component<Props, State> {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
-const HistoricalDate = styled.h2`
+const Headline = styled.h1`
+  text-align: center;
+`;
 
+const HistoricalDate = styled.span`
+  display: block;
 `;
 
 const TotalWorth = styled.h1`
@@ -123,7 +133,7 @@ const Loading = styled.div`
 
 const Button = styled.button`
   cursor: pointer;
-  max-width: 200px;
+  max-width: 300px;
   padding: 20px;
   color: white;
   background: green;
