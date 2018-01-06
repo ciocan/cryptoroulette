@@ -49,8 +49,8 @@ export default class Coin extends Component<Props> {
 
 const Container = styled.a`
   display: flex;
-  flex: 1 auto;
-  min-width: 100px;
+  flex: 1;
+  min-width: 200px;
   max-width: 200px;
   flex-direction: column;
   align-items: center;

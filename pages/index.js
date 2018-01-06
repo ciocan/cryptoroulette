@@ -1,15 +1,20 @@
 // @flow
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { Router } from '../routes';
 import Coin from '../components/Coin';
-import { getRandomDate, getCoins, currency } from '../lib/utils';
+import { getRandomDate, getCoinsFromApi, currency } from '../lib/utils';
 
 const TOTAL_INVESTMENT = 1000;
 const TOTAL_COINS = 6;
 
 import type { CoinType } from '../lib/utils';
 
-type Props = {
+type ProvidedProps = {
+  query: Object
+};
+
+type Props = ProvidedProps & {
   historicalDate: Date
 };
 
@@ -23,10 +28,12 @@ type State = {
 };
 
 export default class extends Component<Props, State> {
-  static async getInitialProps() {
-    return {
-      historicalDate: getRandomDate().toString()
-    };
+  static async getInitialProps({ query }: ProvidedProps) {
+    const historicalDate = query.date
+      ? new Date(parseInt(query.date))
+      : getRandomDate().toString();
+
+    return { historicalDate, query };
   }
 
   state = {
@@ -38,27 +45,45 @@ export default class extends Component<Props, State> {
     hasError: false
   }
 
-  componentDidMount() {
-    this.getCoins();
+  async componentDidMount() {
+    const { query: { date, symbols } } = this.props;
+
+    if (date && symbols) {
+      this.getCoins(new Date(parseInt(date)), symbols.split(':'));
+    } else {
+      await this.getCoins();
+      const { historicalDate, coins } = this.state;
+      const timestamp = new Date(historicalDate).getTime();
+      const symbols = coins.map((coin: CoinType) => coin.symbol).join(':');
+
+      Router.replaceRoute(`/${timestamp}/${symbols}`);
+    }
   }
 
-  getCoins = async (date: Date = new Date(this.props.historicalDate)) => {
+  getCoins = async (historicalDate: Date = new Date(this.props.historicalDate), symbols: string[] = []) => {
     try {
-      const coins = await getCoins(this.state.totalCoins, date);
-      this.setState({ coins });
+      const coins = await getCoinsFromApi(this.state.totalCoins, historicalDate, symbols);
+      this.setState({ coins, historicalDate });
     } catch(e) {
       this.setState({ hasError: true });
     }
   }
 
-  showMeTheMoney = () => {
+  showMeTheMoney = async () => {
+    const historicalDate = getRandomDate();
+
     this.setState({
       worth: 0,
       coins: [],
-      historicalDate: getRandomDate(),
+      historicalDate,
       hasError: false
     });
-    this.getCoins();
+
+    await this.getCoins();
+    const timestamp = new Date(historicalDate).getTime();
+    const symbols = this.state.coins.map((coin: CoinType) => coin.symbol).join(':');
+
+    Router.replaceRoute(`/${timestamp}/${symbols}`);
   }
 
   updateWorth = (value: number) => {
