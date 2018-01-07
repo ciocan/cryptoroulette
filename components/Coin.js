@@ -29,19 +29,18 @@ export default class Coin extends Component<Props> {
 
     return (
       <Container href={`${DOMAIN}${url}`} target="_blank">
-        <Name>{name}</Name>
+        <Header>
+          <HistoricalPrice>
+            {currency(historicalPrice, 6)}
+          </HistoricalPrice>
+          <TotalCoins>{symbol} {totalCoins}</TotalCoins>
+        </Header>
         <Image src={`${DOMAIN}${imageUrl}`} />
-        <CoinSymbol>
-          {symbol}
-        </CoinSymbol>
-        <Price>
-          {currency(currentPrice, 6)}
-        </Price>
-        <HistoricalPrice>
-          {currency(historicalPrice, 6)}
-        </HistoricalPrice>
-        <TotalCoins>{symbol} {totalCoins}</TotalCoins>
+        <Price>{currency(currentPrice, 6)}</Price>
         <Worth>{currency(worth)}</Worth>
+        <Footer>
+          <Name>{name}</Name>
+        </Footer>
       </Container>
     );
   }
@@ -50,19 +49,20 @@ export default class Coin extends Component<Props> {
 const Container = styled.a`
   display: flex;
   flex: 1;
-  min-width: 200px;
-  max-width: 200px;
+  min-width: 240px;
+  max-width: 240px;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 10px;
-  margin: 10px;
+  color: white;
+  background: black;
+  margin: 20px;
   border: 1px solid #666;
-  background: white;
   text-decoration: none;
+  border: 3px solid black;
 
   &:hover {
-    background: #FFA;
+    border: 3px solid white;
   }
 
   &:visited, &:link {
@@ -70,35 +70,53 @@ const Container = styled.a`
   }
 `;
 
-const Name = styled.h3`
-  text-align: center;
+const Header = styled.header`
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  width: 100%;
+  align-items: center;
+  font-size: 14px;
+  color: grey;
+`;
+
+const HistoricalPrice = styled.div`
+`;
+
+const TotalCoins = styled.div`
+
 `;
 
 const Image = styled.img`
-  width: 80px;
-  height: 80px;
-`;
-
-const CoinSymbol = styled.h3`
-
+  width: 120px;
+  height: 120px;
+  background: white;
+  border-radius: 100%;
+  margin-top: 10px;
 `;
 
 const Price = styled.h4`
   font-size: 20px;
-`;
-
-const HistoricalPrice = styled.div`
-  color: grey;
-`;
-
-const TotalCoins = styled.div`
-  padding: 5px;
-  color: grey;
+  color: white;
 `;
 
 const Worth = styled.div`
-  color: green;
+  color: #63A615;
   padding: 5px 0;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 36px;
+  margin-top: 30px;
+`;
+
+const Footer = styled.footer`
+  background: #F54123;
+  width: 100%;
+  margin-top: 10px;
+`;
+
+const Name = styled.h3`
+  text-align: center;
+  color: white;
+  font-size: 20px;
+  font-weight: normal;
 `;

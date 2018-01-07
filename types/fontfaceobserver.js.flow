@@ -1,0 +1,7 @@
+/* @flow */
+
+declare module "fontfaceobserver" {
+  declare module.exports: {
+    FontFaceObserver: Class<*>
+  }
+}

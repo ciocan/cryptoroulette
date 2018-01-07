@@ -17,8 +17,8 @@ export default class MyDocument extends Document {
     return (
       <html lang="en">
         <Head>
-          <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
-          <title>CryptoRoulette</title>
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <title>CryptoRoulette / what is worth of random cryptocurrencies</title>
           {this.props.styleTags}
         </Head>
         <body>
@@ -27,7 +27,12 @@ export default class MyDocument extends Document {
         </body>
         <style global jsx>{`
           * {
-            font-family: "Roboto, sans-serif";
+            box-sizing: border-box;
+          }
+          body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
           }
         `}
         </style>
