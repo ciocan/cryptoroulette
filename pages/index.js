@@ -139,7 +139,7 @@ export default class extends Component<Props, State> {
           </CoinContainer>
         )}
         <Footer>
-          <Link href="https://github.com/ciocan/cryptoroulette">Show me the code <GithubIcon /></Link>
+          <Link href="https://github.com/ciocan/cryptoroulette" target="_blank">Show me the code <GithubIcon /></Link>
         </Footer>
       </Container>
     );
