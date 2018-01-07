@@ -124,7 +124,7 @@ export default class extends Component<Props, State> {
         <Button onClick={this.showMeTheMoney}>Show me the money!</Button>
         {hasError ? (
           <CoinContainer>
-            <Error>OH Nooo!!! I just broke the blockchain. Please try again.</Error>
+            <Error>Oh Nooooo!!! I just broke the blockchain. Please try again.</Error>
           </CoinContainer>
         ) : (
           <CoinContainer>
